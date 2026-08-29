@@ -73,9 +73,11 @@ on `/readyz`. A guardrail that stops running when its inputs disappear, while it
 summary still reads "0 violations", is worse than no guardrail.
 
 **Storage is a consequence of escalation, not of submission.** Only tickets a
-human must see are persisted, only in redacted form, under a TTL index. A support
-system that logs every inbound message forever has built a breach waiting for an
-occasion.
+human must see are persisted, only in redacted form, under a **MongoDB TTL
+index** driven by the `retentionDays` in your config — so the retention policy
+you wrote down and the one that actually runs are the same number, and nothing
+has to remember to delete anything. A support system that logs every inbound
+message forever has built a breach waiting for an occasion.
 
 **Advisory by default.** `sinks: []` out of the box. It classifies, it stores, it
 shows you a queue, and it touches your ticketing system not at all. Run it that
@@ -129,6 +131,31 @@ system, because someone will trust it.
 npm run eval:quick -- --record   # put a number on the board
 npm run eval:redteam             # 100% gate. a rate is the wrong shape for a breach.
 ```
+
+## Built on MongoDB
+
+[`src/adapters/stores/mongodb.ts`](src/adapters/stores/mongodb.ts) is the store
+meant for a running deployment; `memoryStore()` exists so a fresh clone works
+with no infrastructure. Three of this service's stated guarantees are not
+application code at all — they are things the database does:
+
+| Guarantee | How |
+|---|---|
+| Retention is a mechanism, not a promise | `expireAfterSeconds` on the escalations collection, set from `retentionDays`. MongoDB deletes the document. |
+| The rate limiter cannot be raced | One `findOneAndUpdate` with `$inc` + `$setOnInsert` under an upsert. One round trip, one document, no transaction — two concurrent requests cannot both read `count = 4`. |
+| Cost accounting does not drift | `$inc` on an integer field of micro-dollars, because floats drift over a million $0.0004 charges. |
+
+Indexes are created in `init()` at boot, which is safe because `createIndex` is
+idempotent. `maxPoolSize` is deliberately small: free-tier Atlas clusters cap
+total connections and every instance holds its own pool.
+
+`mongodb` is an `optionalDependency`. The service runs, and the test suite
+passes, on a machine that has never seen a database.
+
+The `Store` interface is portable and Postgres would be a straightforward
+addition. That is deliberate, and it is not the same as the choice being
+arbitrary — the atomic-counter and TTL guarantees above are what everything
+upstream assumes it has. See [docs/adapters.md](docs/adapters.md).
 
 ## What this is not
 
