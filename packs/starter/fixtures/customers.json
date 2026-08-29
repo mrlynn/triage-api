@@ -1,0 +1,29 @@
+[
+  {
+    "email": "rivera@example.com",
+    "name": "Rivera",
+    "member_tier": "standard",
+    "member_since": "2024-01-15",
+    "lifetime_value_usd": 890.0,
+    "refunds_last_30d_usd": 0,
+    "prior_contacts_90d": 1
+  },
+  {
+    "email": "okonkwo@example.com",
+    "name": "Okonkwo",
+    "member_tier": "pro",
+    "member_since": "2022-09-01",
+    "lifetime_value_usd": 6240.0,
+    "refunds_last_30d_usd": 380.0,
+    "prior_contacts_90d": 4
+  },
+  {
+    "email": "haddad@example.com",
+    "name": "Haddad",
+    "member_tier": "none",
+    "member_since": null,
+    "lifetime_value_usd": 62.0,
+    "refunds_last_30d_usd": 0,
+    "prior_contacts_90d": 0
+  }
+]

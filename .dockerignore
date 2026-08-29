@@ -1,0 +1,8 @@
+node_modules
+.git
+.env
+.env.local
+evals/results
+docs
+test
+*.md

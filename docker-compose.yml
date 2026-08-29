@@ -1,0 +1,35 @@
+# The production-shaped run: the service plus MongoDB.
+#
+# For the five-minute look, you do not need this at all — `npm run dev` uses
+# the in-memory store and needs nothing but an API key. Reach for compose when
+# you want the escalation queue to survive a restart.
+services:
+  triage-api:
+    build: .
+    ports: ["8787:8787"]
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:?set ANTHROPIC_API_KEY in .env or your shell}
+      MONGODB_URI: mongodb://mongo:27017
+      MONGODB_DB: triage_api
+      # Set these to close the service. Unset means /v1/* is open.
+      API_TOKENS: ${API_TOKENS:-}
+      # Per-source ingest secrets. Each source refuses everything until set.
+      GENERIC_WEBHOOK_SECRET: ${GENERIC_WEBHOOK_SECRET:-}
+      GITHUB_WEBHOOK_SECRET: ${GITHUB_WEBHOOK_SECRET:-}
+      ZENDESK_WEBHOOK_SECRET: ${ZENDESK_WEBHOOK_SECRET:-}
+      NODE_ENV: production
+    depends_on:
+      mongo: { condition: service_healthy }
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:8
+    volumes: ["triage-data:/data/db"]
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  triage-data:

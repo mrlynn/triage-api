@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: The course this came from
+    url: https://triage.mlynn.dev
+    about: Ten labs explaining every design decision in this repository.
+  - name: Security vulnerability
+    url: https://github.com/mrlynn/triage-api/security/advisories/new
+    about: Report privately. Do not open a public issue for anything exploitable.

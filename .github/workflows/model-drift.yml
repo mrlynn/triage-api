@@ -1,0 +1,22 @@
+name: Model drift
+
+# Separate file so the cron does not re-run the whole CI matrix.
+on:
+  schedule: [{ cron: "0 6 * * 1" }]
+  workflow_dispatch:
+
+jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      - name: Run the tier matrix into the job summary
+        run: |
+          { echo '## Model matrix'; echo '```'; npm run eval:models 2>&1 | tail -50; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Re-run the accuracy gate against the recorded baseline
+        run: npm run eval:quick -- --gate

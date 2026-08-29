@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-08-20T12:01:58.147Z",
+  "model": "claude-opus-5",
+  "accuracy": 0.8333333333333334,
+  "passed": 10,
+  "total": 12,
+  "passing_ids": [
+    "eval-01",
+    "eval-02",
+    "eval-04",
+    "eval-05",
+    "eval-06",
+    "eval-07",
+    "eval-08",
+    "eval-09",
+    "eval-10",
+    "eval-12"
+  ]
+}

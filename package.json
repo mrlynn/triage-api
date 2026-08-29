@@ -1,0 +1,39 @@
+{
+  "name": "triage-api",
+  "version": "0.1.0",
+  "description": "An opinionated, open-source reference triage API for support desks. Fork it, point your ticket system at it, keep the guardrails.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": false,
+  "engines": { "node": ">=20" },
+  "repository": { "type": "git", "url": "https://github.com/mrlynn/triage-api.git" },
+  "keywords": ["claude", "anthropic", "support", "triage", "ticketing", "zendesk", "llm", "guardrails"],
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts",
+    "pack:validate": "tsx scripts/validate-pack.ts",
+    "eval": "tsx evals/run-eval.ts",
+    "eval:quick": "tsx evals/quick.ts",
+    "eval:redteam": "tsx evals/red-team.ts",
+    "eval:models": "tsx evals/compare-models.ts",
+    "smoke": "tsx scripts/smoke.ts",
+    "mcp": "tsx src/mcp/server.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.122.0",
+    "@hono/node-server": "^2.0.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "hono": "^4.6.14",
+    "zod": "^4.4.3"
+  },
+  "optionalDependencies": {
+    "mongodb": "^7.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^7.0.0"
+  }
+}

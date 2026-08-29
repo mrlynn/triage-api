@@ -1,0 +1,162 @@
+[
+  {
+    "id": "NW-T-1041",
+    "received_at": "2026-12-08T07:12:00Z",
+    "channel": "email",
+    "customer_email": "j.abara@example.com",
+    "subject": "Where is my order?",
+    "message": "Placed an order two weeks ago for a daypack and the tracking still says label created. Can someone check on this? I need it before the 20th."
+  },
+  {
+    "id": "NW-T-1042",
+    "received_at": "2026-12-08T07:19:00Z",
+    "channel": "chat",
+    "customer_email": "h.ostrom@example.com",
+    "subject": "wrong size",
+    "message": "The shell I got is way too big even though I followed the size chart. Can I swap it for a medium?"
+  },
+  {
+    "id": "NW-T-1043",
+    "received_at": "2026-12-08T07:26:00Z",
+    "channel": "email",
+    "customer_email": "r.velasquez@example.com",
+    "subject": "Trail Club renewal",
+    "message": "I was charged $89 for Trail Club but I cancelled back in October. I have the confirmation email. Please refund."
+  },
+  {
+    "id": "NW-T-1044",
+    "received_at": "2026-12-08T07:33:00Z",
+    "channel": "email",
+    "customer_email": "t.mbeki@example.com",
+    "subject": "gift order question",
+    "message": "If I order the insulated bottle today does it arrive before the 24th? Not sure whether to pay for expedited."
+  },
+  {
+    "id": "NW-T-1045",
+    "received_at": "2026-12-08T07:41:00Z",
+    "channel": "email",
+    "customer_email": "s.lindqvist@example.com",
+    "subject": "Hi, probably nothing, but",
+    "message": "Hi, probably nothing, but I wanted to mention it. My son has been using the insulated bottle we bought in the spring and the inside lining has started flaking. He had a stomach upset this week and the doctor asked what he had been drinking from. Might be unrelated. Just thought you should know."
+  },
+  {
+    "id": "NW-T-1046",
+    "received_at": "2026-12-08T07:44:00Z",
+    "channel": "chat",
+    "customer_email": "d.okafor@example.com",
+    "subject": "coupon not working",
+    "message": "TRAIL15 wont apply at checkout. Says invalid. Am I doing something wrong?"
+  },
+  {
+    "id": "NW-T-1047",
+    "received_at": "2026-12-08T07:52:00Z",
+    "channel": "email",
+    "customer_email": "m.fitzgerald@example.com",
+    "subject": "Re: Re: Re: still no resolution",
+    "message": "This is the fourth time I have written about the tent poles that arrived bent. Nobody has done anything. I have had it. Someone call me."
+  },
+  {
+    "id": "NW-T-1048",
+    "received_at": "2026-12-08T08:03:00Z",
+    "channel": "email",
+    "customer_email": "a.nakamura@example.com",
+    "subject": "address change",
+    "message": "I moved. Can you update the shipping address on my account and on order NW-52044 if it has not gone out yet?"
+  },
+  {
+    "id": "NW-T-1049",
+    "received_at": "2026-12-08T08:11:00Z",
+    "channel": "phone_transcript",
+    "customer_email": "c.pereira@example.com",
+    "subject": "Call notes: jacket zipper",
+    "message": "Customer called. Ridgeline shell purchased 2024, main zipper has separated at the base. Wants a repair or replacement. Advised we would follow up by email."
+  },
+  {
+    "id": "NW-T-1050",
+    "received_at": "2026-12-08T08:18:00Z",
+    "channel": "email",
+    "customer_email": "l.thorsen@example.com",
+    "subject": "delivered but not here",
+    "message": "UPS marked my order delivered yesterday at 4pm. Nothing on the porch, nothing with neighbours, nothing in the garage. Order was about $220."
+  },
+  {
+    "id": "NW-T-1051",
+    "received_at": "2026-12-08T08:27:00Z",
+    "channel": "chat",
+    "customer_email": "b.kowalski@example.com",
+    "subject": "just saying thanks",
+    "message": "Wore the Ridgeline through three days of rain in the Cascades and stayed completely dry. Wanted you to know. Great jacket."
+  },
+  {
+    "id": "NW-T-1052",
+    "received_at": "2026-12-08T08:35:00Z",
+    "channel": "email",
+    "customer_email": "n.haddad@example.com",
+    "subject": "refund still not showing",
+    "message": "You told me the refund was processed six days ago and there is still nothing on my card. Starting to think it was never actually sent."
+  },
+  {
+    "id": "NW-T-1053",
+    "received_at": "2026-12-08T08:44:00Z",
+    "channel": "email",
+    "customer_email": "p.andersson@example.com",
+    "subject": "return - final sale?",
+    "message": "I want to return a beanie I bought in the November sale. It was under the clearance tab. Is that returnable or not?"
+  },
+  {
+    "id": "NW-T-1054",
+    "received_at": "2026-12-08T08:51:00Z",
+    "channel": "email",
+    "customer_email": "g.rossi@example.com",
+    "subject": "legal notice re: tent failure",
+    "message": "My attorney will be in contact regarding the tent poles that collapsed during a storm and damaged the roof of my vehicle. I am documenting everything."
+  },
+  {
+    "id": "NW-T-1055",
+    "received_at": "2026-12-08T09:02:00Z",
+    "channel": "chat",
+    "customer_email": "y.tanaka@example.com",
+    "subject": "password reset loop",
+    "message": "Reset link keeps saying expired even though I click it right away. Tried three times. Cannot get into my account."
+  },
+  {
+    "id": "NW-T-1056",
+    "received_at": "2026-12-08T09:10:00Z",
+    "channel": "email",
+    "customer_email": "e.dubois@example.com",
+    "subject": "wholesale enquiry",
+    "message": "We run a guiding outfit in Colorado and would like to talk about bulk pricing on shells for our staff. Who should I speak to?"
+  },
+  {
+    "id": "NW-T-1057",
+    "received_at": "2026-12-08T09:19:00Z",
+    "channel": "email",
+    "customer_email": "k.brennan@example.com",
+    "subject": "double charged",
+    "message": "There are two identical $142 charges on my statement from this morning, ten minutes apart. I only placed one order."
+  },
+  {
+    "id": "NW-T-1058",
+    "received_at": "2026-12-08T09:28:00Z",
+    "channel": "email",
+    "customer_email": "w.eriksen@example.com",
+    "subject": "stranded without gear",
+    "message": "My expedition tent was supposed to arrive Friday for a trip that leaves Wednesday morning. It has not shipped. I am flying to Patagonia and I have no shelter. What are my options right now?"
+  },
+  {
+    "id": "NW-T-1059",
+    "received_at": "2026-12-08T09:36:00Z",
+    "channel": "chat",
+    "customer_email": "f.castillo@example.com",
+    "subject": "sizing question",
+    "message": "Between a 32 and 34 waist which do the trail pants run closer to? Do not want to order both."
+  },
+  {
+    "id": "NW-T-1060",
+    "received_at": "2026-12-08T09:45:00Z",
+    "channel": "email",
+    "customer_email": "i.novak@example.com",
+    "subject": "refund and email change",
+    "message": "i need a refund on order nw48211 and also my email on the account is wrong can you change it to i.novak2@example.com"
+  }
+]

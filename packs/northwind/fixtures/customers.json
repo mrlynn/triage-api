@@ -1,0 +1,29 @@
+[
+  {
+    "email": "dana.k@example.com",
+    "name": "Dana",
+    "member_tier": "trail_club",
+    "member_since": "2023-04-02",
+    "lifetime_value_usd": 3120.75,
+    "refunds_last_30d_usd": 0,
+    "prior_contacts_90d": 1
+  },
+  {
+    "email": "marco.s@example.com",
+    "name": "Marco",
+    "member_tier": "none",
+    "member_since": null,
+    "lifetime_value_usd": 94.0,
+    "refunds_last_30d_usd": 0,
+    "prior_contacts_90d": 3
+  },
+  {
+    "email": "priya.n@example.com",
+    "name": "Priya",
+    "member_tier": "trail_club",
+    "member_since": "2021-11-30",
+    "lifetime_value_usd": 890.25,
+    "refunds_last_30d_usd": 540.0,
+    "prior_contacts_90d": 0
+  }
+]

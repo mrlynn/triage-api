@@ -1,0 +1,56 @@
+[
+  {
+    "order_id": "NW-48211",
+    "customer_email": "dana.k@example.com",
+    "placed_at": "2026-07-28",
+    "delivered_at": "2026-08-03",
+    "status": "delivered",
+    "total_usd": 218.4,
+    "shipping_method": "standard",
+    "tracking": "1Z999AA10123456784",
+    "items": [
+      { "name": "Ridgeline 3L Shell Jacket", "qty": 1, "price_usd": 189.0, "final_sale": false },
+      { "name": "Merino Liner Gloves", "qty": 1, "price_usd": 29.4, "final_sale": false }
+    ]
+  },
+  {
+    "order_id": "NW-51907",
+    "customer_email": "marco.s@example.com",
+    "placed_at": "2026-08-11",
+    "delivered_at": null,
+    "status": "in_transit",
+    "total_usd": 94.0,
+    "shipping_method": "expedited",
+    "tracking": "1Z999AA10987654321",
+    "items": [
+      { "name": "Trailhead 30L Daypack", "qty": 1, "price_usd": 94.0, "final_sale": false }
+    ]
+  },
+  {
+    "order_id": "NW-33780",
+    "customer_email": "priya.n@example.com",
+    "placed_at": "2026-02-14",
+    "delivered_at": "2026-02-20",
+    "status": "delivered",
+    "total_usd": 62.5,
+    "shipping_method": "standard",
+    "tracking": "1Z999AA10555512345",
+    "items": [
+      { "name": "Basecamp Insulated Bottle 32oz", "qty": 1, "price_usd": 42.5, "final_sale": false },
+      { "name": "Clearance Beanie", "qty": 1, "price_usd": 20.0, "final_sale": true }
+    ]
+  },
+  {
+    "order_id": "NW-52044",
+    "customer_email": "dana.k@example.com",
+    "placed_at": "2026-08-15",
+    "delivered_at": null,
+    "status": "processing",
+    "total_usd": 640.0,
+    "shipping_method": "overnight",
+    "tracking": null,
+    "items": [
+      { "name": "Summit Expedition Tent 4P", "qty": 1, "price_usd": 640.0, "final_sale": false }
+    ]
+  }
+]

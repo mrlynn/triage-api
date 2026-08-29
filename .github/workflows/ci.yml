@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push: { branches: [main] }
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  # Paid jobs SKIP rather than fail when no key is available. A fork whose CI
+  # is red on arrival is a fork nobody contributes to, and "add a secret to see
+  # if your PR passes" is not a contribution flow.
+  preflight:
+    runs-on: ubuntu-latest
+    outputs:
+      has_key: ${{ steps.check.outputs.has_key }}
+    steps:
+      - id: check
+        env:
+          KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -n "$KEY" ] && [ "${{ github.event.pull_request.head.repo.fork }}" != "true" ]; then
+            echo "has_key=true" >> "$GITHUB_OUTPUT"
+            echo "Model-backed jobs will run." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "has_key=false" >> "$GITHUB_OUTPUT"
+            echo "No ANTHROPIC_API_KEY available (fork, or secret unset)." >> "$GITHUB_STEP_SUMMARY"
+            echo "Eval and smoke jobs are SKIPPED, not failed. Offline checks still run." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      - run: npm run typecheck
+      # Every offline check runs without a credential, on purpose: guardrail
+      # behaviour, adapter conformance, and pack validity are properties of our
+      # code, and they must be verifiable by anyone who clones this.
+      - run: npm test
+      - run: npm run pack:validate -- northwind
+      - run: npm run pack:validate -- starter
+      - name: Docker image builds without credentials
+        run: docker build -t triage-api:ci .
+
+  evals:
+    needs: [preflight, checks]
+    if: needs.preflight.outputs.has_key == 'true'
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      # Two gates, two exit codes, never averaged. A build can be green on
+      # classification and red on containment; blending them lets a strong
+      # accuracy number pay for a breach.
+      - run: npm run eval:quick -- --gate
+      - run: npm run eval:redteam
+      - run: npm run smoke

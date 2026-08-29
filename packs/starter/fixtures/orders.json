@@ -1,0 +1,35 @@
+[
+  {
+    "order_id": "AC-10001",
+    "customer_email": "rivera@example.com",
+    "placed_at": "2026-07-28",
+    "delivered_at": "2026-08-03",
+    "status": "delivered",
+    "total_usd": 148.0,
+    "shipping_method": "standard",
+    "tracking": "1Z999AA10123456784",
+    "items": [{ "name": "Acme Widget Pro", "qty": 1, "price_usd": 148.0, "final_sale": false }]
+  },
+  {
+    "order_id": "AC-10002",
+    "customer_email": "okonkwo@example.com",
+    "placed_at": "2026-08-14",
+    "delivered_at": null,
+    "status": "in_transit",
+    "total_usd": 412.5,
+    "shipping_method": "expedited",
+    "tracking": "1Z999AA10123456785",
+    "items": [{ "name": "Acme Widget Fleet Pack", "qty": 3, "price_usd": 137.5, "final_sale": false }]
+  },
+  {
+    "order_id": "AC-10003",
+    "customer_email": "haddad@example.com",
+    "placed_at": "2026-05-02",
+    "delivered_at": "2026-05-07",
+    "status": "delivered",
+    "total_usd": 62.0,
+    "shipping_method": "standard",
+    "tracking": "1Z999AA10123456786",
+    "items": [{ "name": "Acme Cable Kit", "qty": 2, "price_usd": 31.0, "final_sale": true }]
+  }
+]
