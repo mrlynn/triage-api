@@ -107,9 +107,27 @@ enforces, each of which is a bug someone has shipped:
 4. **Retention is a mechanism, not a promise.** A TTL index, a scheduled job,
    something that runs without anyone remembering.
 
-`memoryStore()` is the reference for behaviour; `mongoStore()` is the reference
-for operations. Postgres is a straightforward addition and the interface is
-already carved for it.
+`memoryStore()` is the reference for behaviour; **`mongoStore()` is the one
+meant for a running deployment**, and it is where those four properties are
+actually implemented:
+
+- The atomic counter is a single `findOneAndUpdate` with `$inc` and `$setOnInsert`
+  under an upsert — one round trip, one document, no transaction.
+- Retention is an `expireAfterSeconds` index driven by `retentionDays` in your
+  config, so the policy you wrote down and the policy that runs are the same
+  number. MongoDB deletes the document; nothing has to remember to.
+- Cost is `$inc` on an integer field of micro-dollars.
+- Every index is created in `init()`, which runs once at boot. `createIndex` is
+  idempotent, which is what makes that safe.
+
+`mongodb` is an **optionalDependency**, so a fresh clone with no database still
+runs on the memory store and the test suite still passes.
+
+The interface is portable and Postgres would be a straightforward addition —
+that is a property worth keeping, and the reason the `Store` methods are shaped
+the way they are. It is not an argument that the choice does not matter: the
+atomic-counter and TTL guarantees above are what the rest of the service assumes
+it has.
 
 ---
 
