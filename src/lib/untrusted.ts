@@ -91,9 +91,9 @@ function passesLuhn(digits: string): boolean {
 /**
  * Removes identifiers that policy says must never be stored or echoed.
  *
- * Handbook the policy handbook requires card digits to be redacted, and another lists
- * what must never appear in a reply. Until now both were prose the model read
- * and nothing enforced.
+ * A policy handbook will require card digits to be redacted, and will list what
+ * must never appear in a reply. In most systems both are prose the model reads
+ * and nothing enforces.
  *
  * TWO DESIGN CHOICES worth arguing about:
  *
