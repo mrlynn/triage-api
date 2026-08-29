@@ -34,11 +34,15 @@ import { mongoStore } from "./adapters/stores/mongodb.js";
 import { genericWebhookSource } from "./adapters/sources/generic-webhook.js";
 import { githubIssuesSource } from "./adapters/sources/github-issues.js";
 import { zendeskSource } from "./adapters/sources/zendesk.js";
+import { chatwootSource } from "./adapters/sources/chatwoot.js";
+import { zammadSource } from "./adapters/sources/zammad.js";
 import { fixturesSource } from "./adapters/sources/fixtures.js";
 import { noopSink } from "./adapters/sinks/noop.js";
 import { genericWebhookSink } from "./adapters/sinks/generic-webhook.js";
 import { githubIssuesSink } from "./adapters/sinks/github-issues.js";
 import { zendeskSink } from "./adapters/sinks/zendesk.js";
+import { chatwootSink } from "./adapters/sinks/chatwoot.js";
+import { zammadSink } from "./adapters/sinks/zammad.js";
 
 export interface Runtime {
   config: TriageConfig;
@@ -86,6 +90,8 @@ function buildSources(cfg: TriageConfig): Map<string, TicketSource> {
       case "generic-webhook": map.set(key, genericWebhookSource(s.secretEnv)); break;
       case "github-issues":   map.set(key, githubIssuesSource(s.secretEnv)); break;
       case "zendesk":         map.set(key, zendeskSource(s.secretEnv)); break;
+      case "chatwoot":        map.set(key, chatwootSource(s)); break;
+      case "zammad":          map.set(key, zammadSource(s)); break;
       case "fixtures":        map.set(key, fixturesSource()); break;
     }
   }
@@ -99,6 +105,8 @@ function buildSinks(cfg: TriageConfig): TicketSink[] {
       case "generic-webhook": return genericWebhookSink(s.urlEnv, s.secretEnv);
       case "github-issues": return githubIssuesSink(s);
       case "zendesk": return zendeskSink(s);
+      case "chatwoot": return chatwootSink(s);
+      case "zammad": return zammadSink(s);
     }
   });
 }

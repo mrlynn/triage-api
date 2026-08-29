@@ -104,15 +104,20 @@ export default defineConfig({
   pack: "acme",
   store: { kind: "mongodb" },
   data: { kind: "http", orderUrl: "https://internal/orders/{id}" },
-  sources: { zendesk: { kind: "zendesk" } },
+  sources: { chatwoot: { kind: "chatwoot" } },
   sinks: [],  // still advisory. add one when you believe it.
 });
 ```
 
-Shipped: **generic-webhook** (the one to reach for first — sign a POST from the
-system you already control), **Zendesk**, **GitHub Issues** (testable in five
-minutes with no sales call), **fixtures** (dev). Everything else is an interface
-plus a conformance suite: [docs/adapters.md](docs/adapters.md).
+Shipped: **Chatwoot** (the fullest connector — labels, priority, team routing
+and a private note, over an open-source helpdesk you can self-host in an
+afternoon: [docs/integrations/chatwoot.md](docs/integrations/chatwoot.md)),
+**Zammad** (ticket-centric, for mature self-hosted deployments that need
+auditable routing: [docs/integrations/zammad.md](docs/integrations/zammad.md)),
+**generic-webhook** (the one to reach for first — sign a POST from the system
+you already control), **Zendesk**, **GitHub Issues** (testable in five minutes
+with no sales call), **fixtures** (dev). Everything else is an interface plus a
+conformance suite: [docs/adapters.md](docs/adapters.md).
 
 **3. Your eval set.** This is the step people skip and the one that decides
 whether any of the rest works. Ten to fifteen real tickets, hand-labelled, in

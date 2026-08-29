@@ -29,9 +29,20 @@ export default defineConfig({
     // Uncomment and set the matching secret in .env to accept real webhooks.
     // Each source REFUSES every request until its secret is set. Fail closed.
     //
-    // "generic": { kind: "generic-webhook" },
-    // "github":  { kind: "github-issues" },
-    // "zendesk": { kind: "zendesk" },
+    // "generic":  { kind: "generic-webhook" },
+    // "github":   { kind: "github-issues" },
+    // "zendesk":  { kind: "zendesk" },
+    //
+    // Chatwoot. Subscribe the webhook to `conversation_created` ONLY — Chatwoot
+    // fires both that and `message_created` for a conversation's opening
+    // message, and enabling both triages it twice under two ids.
+    // See docs/integrations/chatwoot.md.
+    // "chatwoot": { kind: "chatwoot" },
+    //
+    // Zammad. Create a webhook WITH a signature token, then a trigger whose
+    // condition is "Action is created". The event filter lives in the trigger,
+    // not here. See docs/integrations/zammad.md.
+    // "zammad":   { kind: "zammad" },
   },
 
   /**
