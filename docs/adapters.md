@@ -169,6 +169,61 @@ this repo.
 
 ---
 
+## Worked example: Chatwoot (shipped)
+
+The fullest connector in the repo, and the one to read before writing your own.
+It exercises every part of the contract — a signed-with-timestamp source, a loop
+guard, a read-before-write sink, capability flags that reflect config rather than
+wishes — and each of its sharp edges is a real property of a real API rather than
+a hypothetical.
+
+Full walkthrough: [docs/integrations/chatwoot.md](integrations/chatwoot.md).
+The four things it exists to teach:
+
+1. **Two events fire for one message.** `conversation_created` and
+   `message_created` both fire for a conversation's first message. Accept both
+   and you triage it twice under two ids, so idempotency does not save you. The
+   adapter accepts one by default and makes you opt into the other.
+2. **A field's type changes with its position.** `message_type` is the string
+   `"incoming"` at the top level of a message event and the raw integer `0`
+   inside a conversation's `messages[]`. Handle both or silently drop half your
+   traffic.
+3. **A write endpoint that replaces rather than appends.** Chatwoot's label API
+   sets the whole list. The sink reads first and posts the union, and when the
+   read fails it skips the write rather than deleting the agent's labels.
+4. **A boolean that reaches a customer.** `private: false` delivers the message
+   on the customer's channel. Default to internal, name the option that changes
+   it, and put the reason next to it.
+
+---
+
+## Worked example: Zammad (shipped)
+
+Read this one **after** Chatwoot, because the interesting thing about it is where
+it disagrees. Same job, same contract, opposite answers in four places.
+
+Full walkthrough: [docs/integrations/zammad.md](integrations/zammad.md).
+
+| | Chatwoot | Zammad |
+|---|---|---|
+| Event model | subscribe to named events | a **trigger** with conditions calls a webhook; the filter lives in their admin UI |
+| Signature | HMAC-**SHA256** over `{ts}.{body}`, `X-Chatwoot-Signature` | HMAC-**SHA1** over the body, `X-Hub-Signature` |
+| Tags/labels | endpoint **replaces** the list — read and merge first | endpoint **appends** one at a time — no read needed |
+| Writes | four calls (labels, priority, assignment, note) | **one** `PUT` carrying priority, group and the note |
+
+That last row has a sting. Because the fields and the note ride in the same call,
+and because Zammad resolves `priority`/`group` **by name** and 422s on a name it
+cannot find, a typo in your config would take the reviewer's note down with it.
+The sink retries with the article alone and reports the cause. One transactional
+call is a real advantage and it has a real failure mode; both are worth seeing.
+
+**The transferable lesson is the tags row.** The same conceptual operation —
+"add a label" — replaces in one system and appends in the other. Neither is
+wrong. Read what the endpoint does; never carry the last connector's assumption
+into the next one.
+
+---
+
 ## Worked example: Jira Service Management
 
 Not shipped, because it cannot be tested without a licensed instance. The shape:
